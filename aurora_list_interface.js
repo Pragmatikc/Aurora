@@ -4,23 +4,38 @@
 Чтобы вызвать функцию, скопируйте её имя в свой блок кода, при необходимости подставив аргументы.</p>
 <p>This module works as a reference and does not create separate actions for the selected functions!</br>
 To call a function, copy function's name into your code block, substituting arguments if necessary.</p></div>
-<%= _.template($('#input_constructor').html())({id:"Log", description:tr("List object functions"), default_selector: "string", disable_int:true
+<%= _.template($('#input_constructor').html())({id:"Log", description:tr("als{} object functions (aurora lists)"), default_selector: "string", disable_int:true
 
 ,variants: [
-"list.array_mix(array)<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Array mixing") + "</span>",
-"list.random(array)<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Random element from list") + "</span>",
-"list.doubles(array)<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Removing duplicates from array") + "</span>",
-"list.thread(array)<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Assigning element from array to a thread") + "</span>",
-"list.threads(threads, array)<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Distribution of array elements between threads") + "</span>"
+"als.array_mix(list)<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] List mixing") + "</span>",
+"als.random(list)<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Random element from list") + "</span>",
+"als.doubles(list)<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Removing duplicates from list") + "</span>",
+"als.compare(list1, list2)<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Two lists comparing") + "</span>",
+"als.kill(list, element)<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Delete list element by value") + "</span>",
+"als.ext(list, element_number)<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Extract element by index with removal from list") + "</span>",
+"als.thread(list)<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Assigning element from list to a thread") + "</span>",
+"als.threads(threads, list)<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Distribution of list elements between threads") + "</span>"
 ],
 }) %>
 
 </div>
 <div class="tooltipinternal">
-      <div class="tr tooltip-paragraph-first-fold">Примечание!</div>
-	  <div class="tr tooltip-paragraph-fold">Start with aurora.check function for support the latest version of the library in you project.</div>
-	  <div class="tr tooltip-paragraph-fold">Specify your version of the library when you call it like this: aurora.check('2.0.1').</div>
-      <div class="tooltip-paragraph-last-fold">If user is using an older version, this function will force to update the library.</div>
+      <div class="tr tooltip-paragraph-first-fold">Annotation!</div>
+	  <div class="tr tooltip-paragraph-fold">For replacement standart BAS commands from action 'List', use next javascript commands:</div>
+	  <div class="tr tooltip-paragraph-fold">VAR_LIST.push(element): Add element to list.</div>
+	  <div class="tr tooltip-paragraph-fold">VAR_LIST[3]: Get element by index, where 3 - element index.</div>
+	  <div class="tr tooltip-paragraph-fold">VAR_LIST.splice(0, 1, '3'): Insert element, where '3' - element, 1 - position.</div>
+	  <div class="tr tooltip-paragraph-fold">VAR_LIST[0]: First list element.</div>
+	  <div class="tr tooltip-paragraph-fold">VAR_LIST[VAR_LIST.length - 1]: Last list element.</div>
+	  <div class="tr tooltip-paragraph-fold">VAR_LIST.length: List length.</div>
+	  <div class="tr tooltip-paragraph-fold">VAR_LIST.slice().splice(0,3): Sublist, where 0-3 - final sublist range.</div>
+	  <div class="tr tooltip-paragraph-fold">VAR_LIST.join(','): Join list to string, where ',' - separator.</div>
+	  <div class="tr tooltip-paragraph-fold">VAR_STRING.split(','): Parse string to list, where ',' - separator.</div>
+	  <div class="tr tooltip-paragraph-fold">VAR_LIST.indexOf('element'): Get element index.</div>
+	  <div class="tr tooltip-paragraph-fold">VAR_NEW_LIST = (VAR_LIST).slice(): Copy list.</div>
+	  <div class="tr tooltip-paragraph-fold">VAR_LIST.sort(): Sort list.</div>
+	  <div class="tr tooltip-paragraph-fold">VAR_NEW_LIST = (VAR_LIST).concat(VAR_LIST_2.slice()): Merge lists.</div>
+	  <div class="tr tooltip-paragraph-fold">If you want to distribute the elements of the list evenly between threads, use function als.threads(threadsnum, list), where 'threadsnum' - number of all threads:</div>
+      <div class="tooltip-paragraph-last-fold">als.threads(10, VAR_LIST)</div>
 </div>
-<a onclick="BrowserAutomationStudio_OpenUrl('https://community.bablosoft.com/user/pragmatik')" class="tr" style="margin-left: 20px;cursor: pointer;">Detailed instructions</a>
 <%= _.template($('#back').html())({action:"executeandadd", visible:true}) %>
