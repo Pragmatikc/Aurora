@@ -4,32 +4,24 @@
 Чтобы вызвать функцию, скопируйте её имя в свой блок кода, при необходимости подставив аргументы.</p>
 <p>This module works as a reference and does not create separate actions for the selected functions!</br>
 To call a function, copy function's name into your code block, substituting arguments if necessary.</p></div>
-<%= _.template($('#input_constructor').html())({id:"Log", description:tr("atm{} object functions (aurora time)"), default_selector: "string", disable_int:true
+<%= _.template($('#input_constructor').html())({id:"Log", description:tr("Time object functions"), default_selector: "string", disable_int:true
 
 ,variants: [
-"atm.time()<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Current time") + "</span>",
-"atm.year()<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Current full year") + "</span>",
-"atm.monthnum()<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Month sequence number (0-11)") + "</span>",
-"atm.month()<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Month number (1-12)") + "</span>",
-"atm.day()<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Current day") + "</span>",
-"atm.hour()<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Current hour") + "</span>",
-"atm.minute()<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Current minute") + "</span>",
-"atm.second()<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Current second") + "</span>",
-"atm.unixtime()<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Current unix time") + "</span>",
-"atm.unixtimems()<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Current unix time with milliseconds") + "</span>",
-"atm.unixtoutc(unixtime)<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Convert unixtime to UTC") + "</span>",
-"atm.unixmstoutc(unixtime)<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Convert unixtime with milliseconds to UTC") + "</span>",
-"atm.delayed_start(start_time)<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Delayed start") + "</span>"
+"time.time()<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Help for Aurora") + "</span>",
+"time.unixtime()<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Aurora library version checker") + "</span>",
+"time.unixtime_ms()<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Aurora library version checker") + "</span>",
+"time.unixtoutc(unixtime)<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Aurora library version checker") + "</span>",
+"time.unixmstoutc(unixtime)<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Aurora library version checker") + "</span>",
+"time.delayed_start(start_time)<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Aurora library version checker") + "</span>"
 ],
 }) %>
 
 </div>
 <div class="tooltipinternal">
-      <div class="tr tooltip-paragraph-first-fold">Annotation!</div>
-	  <div class="tr tooltip-paragraph-fold">Function atm.delayed_start return the sleep time in milliseconds.</div>
-	  <div class="tr tooltip-paragraph-fold">Use this function with function sleep()! from BAS API. Example:</div>
-	  <div class="tr tooltip-paragraph-fold">var block = '123456789'</div>
-	  <div class="tr tooltip-paragraph-fold">var sleep_time = atm.delayed_start ('18:03:30')</div>
-	  <div class="tooltip-paragraph-last-fold">sleep(sleep_time)!</div>
+      <div class="tr tooltip-paragraph-first-fold">Примечание!</div>
+	  <div class="tr tooltip-paragraph-fold">Start with aurora.check function for support the latest version of the library in you project.</div>
+	  <div class="tr tooltip-paragraph-fold">Specify your version of the library when you call it like this: aurora.check('2.0.1').</div>
+      <div class="tooltip-paragraph-last-fold">If user is using an older version, this function will force to update the library.</div>
 </div>
+<a onclick="BrowserAutomationStudio_OpenUrl('https://community.bablosoft.com/user/pragmatik')" class="tr" style="margin-left: 20px;cursor: pointer;">Detailed instructions</a>
 <%= _.template($('#back').html())({action:"executeandadd", visible:true}) %>

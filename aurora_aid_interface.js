@@ -4,11 +4,16 @@
 Чтобы вызвать функцию, скопируйте её имя в свой блок кода, при необходимости подставив аргументы.</p>
 <p>This module works as a reference and does not create separate actions for the selected functions!</br>
 To call a function, copy function's name into your code block, substituting arguments if necessary.</p></div>
-<%= _.template($('#input_constructor').html())({id:"Log", description:tr("Time object functions"), default_selector: "string", disable_int:true
+<%= _.template($('#input_constructor').html())({id:"Log", description:tr("Aid object functions"), default_selector: "string", disable_int:true
 
 ,variants: [
-"aurora.help()<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Help for Aurora") + "</span>",
-"aurora.check()<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Aurora library version checker") + "</span>"
+"aid.thread()<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Thread index") + "</span>",
+"aid.thread_100()<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Thread index for 100 threads") + "</span>",
+"aid.thread_1000()<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Thread index for 1000 threads") + "</span>",
+"aid.is_num()<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Check for number") + "</span>",
+"aid.var_isset()<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Check for a variable existence") + "</span>",
+"aid.global()<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Global variable reading") + "</span>",
+"aid.sound()<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Sound reproduction") + "</span>"
 ],
 }) %>
 
