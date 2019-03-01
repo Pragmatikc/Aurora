@@ -11,8 +11,6 @@ To call a function, copy function's name into your code block, substituting argu
 "asf.thread100()<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Thread index for 100 threads") + "</span>",
 "asf.thread1000()<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Thread index for 1000 threads") + "</span>",
 "asf.res(resource_name)<br/><span style='color:gray;font-size:small'>" + tr("[1.0.1] Resource reed") + "</span>",
-"asf.res(resource_name)<br/><span style='color:gray;font-size:small'>" + tr("[1.1.0] Resource to list") + "</span>",
-"asf.location(resource_name)<br/><span style='color:gray;font-size:small'>" + tr("[1.0.1] Resource location") + "</span>",
 "asf.is_num(number_string)<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Check for number") + "</span>",
 "asf.var_isset(variable_name)<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Check for a variable existence") + "</span>",
 "asf.global(global_variable)<br/><span style='color:gray;font-size:small'>" + tr("[1.0.0] Global variable reading") + "</span>",

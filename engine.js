@@ -1,6 +1,6 @@
 var aurora = {}
-aurora.version = [1,1,0]
-aurora.versions = ['1.1.0','1.0.1','1.0.0','0.0.1']
+aurora.version = [1,0,1]
+aurora.versions = ['1.0.1','1.0.0','0.0.1']
 aurora.help = function(){
     var version = aurora.version[0] + '.' + aurora.version[1] + '.' + aurora.version[2]
     var name = 'aurora.help***func'
@@ -10,46 +10,28 @@ aurora.help = function(){
     alg.name2(name, 'Актуальную версию библиотеки Аврора можно скачать здесь:***success', 'https://cloud.mail.ru/public/Dtmr/S4TjGgopm***ok')
 }
 aurora.check = function(string){
-    var arr = string.split('.')
+    var arr = string.split('.'); var check = true
     if (arr.length != 3){
 		var str2 = string + '***ok'
 		alg.name3('aurora.check***func', 'Требуемая версия библиотеки Aurora (***red', str2, ') указана неверно.***red')
 		alg.fail("Укажите требуемую версию библиотеки правильно!")
     }
-	var version = aurora.version[0] + '.' + aurora.version[1] + '.' + aurora.version[2]
-	var check = aurora.versions_compare(version, '>=', string)
+    var major_req = arr[0]; var major = aurora.version[0]; if (major_req > major){var check = false}
+    var minor_req = arr[1]; var minor = aurora.version[1]; if (minor_req > minor){var check = false}
+    var micro_req = arr[2]; var micro = aurora.version[2]; if (micro_req > micro){var check = false}
+    var version = aurora.version[0] + '.' + aurora.version[1] + '.' + aurora.version[2]
     if (check){
 		var str3 = String(version) + '***ok';
-		var name = 'aurora.check***func';
-		alg.name3(name, 'Версия библиотеки ***success', 'aurora_library ***green', str3)
-		alg.name2(name, 'Актуальная версия библиотеки Аврора: ***success', 'https://cloud.mail.ru/public/Dtmr/S4TjGgopm***ok')
+		alg.name3('aurora.check***func', 'Версия библиотеки ***success', 'aurora_library ***green', str3)
+		alg.name2('aurora.check***func', 'Актуальная версия библиотеки Аврора: ***success', 'https://cloud.mail.ru/public/Dtmr/S4TjGgopm***ok')
     } else {
         var name = 'aurora.check***func';
-        var str2 = string + '***ok';
+        var str2 = string + '***ok'; 
 		alg.name2(name, 'Требуется врсия Aurora Library не ниже ***error', str2)
-		var str2 = version + '***ok';
+		var str2 = version + '***ok'; 
 		alg.name2(name, 'На даный момент установлена версия***error', str2)
-		alg.name(name, 'Если проект создан с более новой версией библиотеки, некоторые функции могут не работать без обновления!***error')
 		alg.name2(name, 'Скачайте и установите актуальную версию: ***success', 'https://cloud.mail.ru/public/Dtmr/S4TjGgopm***ok')
     }
-}
-aurora.versions_compare = function(v1, comparator, v2) {
-    //"use strict";
-    var comparator = comparator == '=' ? '==' : comparator;
-    if(['==','===','<','<=','>','>=','!=','!=='].indexOf(comparator) == -1) {
-		alg.fail("Укажите знак сравнения правильно! Доступные варианты: '==','===','<','<=','>','>=','!=','!=='")
-    }
-    var v1parts = v1.split('.'), v2parts = v2.split('.')
-    var maxLen = Math.max(v1parts.length, v2parts.length)
-    var part1, part2
-    var cmp = 0
-    for(var i = 0; i < maxLen && !cmp; i++) {
-        part1 = parseInt(v1parts[i], 10) || 0
-        part2 = parseInt(v2parts[i], 10) || 0
-        if(part1 < part2){cmp = 1}
-        if(part1 > part2){cmp = -1}
-    }
-    return eval('0' + comparator + cmp);
 }
 // *****************************БЛОК*ВЫВОДА*ИНФОРМАЦИИ*В*ЛОГ**********************************
 var alg = {}
@@ -204,7 +186,6 @@ atm.delayed_start = function (string){
 // *****************************БЛОК*РАБОТЫ*СО*СПИСКАМИ********************************
 var als = {}
 als.array_mix = function(array){
-	if (array.length < 1){alg.name("als.array_mix***func", "Массив пуст***error"); alg.fail("Укажите непустой масив с элементами!")}
 	var j, x, i;
 	for (i = array.length; i; i--) {
 		j = Math.floor(Math.random() * i)
@@ -214,44 +195,35 @@ als.array_mix = function(array){
 	return array
 }
 als.random = function(array){
-	if (array.length < 1){alg.name("als.random***func", "Массив пуст***error"); alg.fail("Укажите непустой масив с элементами!")}
 	return array[Math.floor(Math.random() * array.length)]
 }
 als.doubles = function(array){
-	if (array.length < 1){alg.name("als.doubles***func", "Массив пуст***error"); alg.fail("Укажите непустой масив с элементами!")}
 	var seen = {}
 	return (array).filter(function(item) {
 		return seen.hasOwnProperty(item) ? false : (seen[item] = true); 
 	});
 }
 als.carousel = function(array){
-	if (array.length < 1){alg.name("als.carousel***func", "Массив пуст***error"); alg.fail("Укажите непустой масив с элементами!")}
 	var result = array.shift()
 	array.push(result)
 	return result
 }
 als.compare = function(array, array2){
-	if (array.length < 1){alg.name("als.kill***func", "Массив пуст***error"); alg.fail("Укажите непустой масив с элементами!")}
-	return JSON.stringify((array).slice().sort()) == JSON.stringify((array2).slice().sort())
+	 return JSON.stringify((array).slice().sort()) == JSON.stringify((array2).slice().sort())
 }
 als.kill = function(array, element){
-	if (array.length < 1){alg.name("als.kill***func", "Массив пуст***error"); alg.fail("Укажите непустой масив с элементами!")}
-	eval('var result = '+ array + '.filter(function(e){return e!== "'+ element +'" })')
+	eval('var result = VAR_AAA.filter(function(e){return e!== "'+ element +'" })')
     return result
 }
 als.del = function(array, index){
 	return array.splice(index,1)
 }
 als.thread = function(array){
-	if (array.length < 1){alg.name("als.thread***func", "Массив пуст***error"); alg.fail("Укажите непустой масив с элементами!")}
-	var thread = thread_number(); var thread = thread - 1; var count = 0; var cycle = 0; var length = array.length
+	var thread = thread_number(); var thread = thread - 1; var count = 0; var cycle = 0; var length = array.length// - 1
 	while(cycle<thread){var id=count; if(count<length){count++}else{count=0}cycle++}
 	return array[id]
 }
 als.threads = function(threads, array){
-	if (array.length < 1){alg.name2("als.threads***func", "Массив пуст***error", threads + "***ok"); alg.fail("Укажите непустой масив с элементами!")}
-	var threads_check = asf.is_num(threads)
-	if (threads_check == false){alg.name2("als.threads***func", "Неверно указано общее число потоков***error", threads + "***ok"); alg.fail("Укажите количество потоков правильно!")}
 	var thread_index = thread_number(); var thread = thread_index - 1
 	if (threads < array.length) {
 		var divider = Math.ceil(array.length/threads)
@@ -264,47 +236,36 @@ als.threads = function(threads, array){
 // *****************************БЛОК*РЕГУЛЯРНЫХ*ВЫРАЖЕНИЙ********************************
 var are = {}
 are.check = function(regexp,content){
-	try{
-		var regexp = aec.unicode(regexp)
-		eval('var result = Boolean(native("regexp", "ismatch", JSON.stringify({text:content,regexp:"'+regexp+'"})) == "true")'); return result
-	}
-	catch(e){fail(e)}
+	var regexp = aec.unicode(regexp)
+	eval('var result = Boolean(native("regexp", "ismatch", JSON.stringify({text:content,regexp:"'+regexp+'"})) == "true")')
+	return result
 }
 are.first = function(regexp,content){
-	try{
-		var regexp = aec.unicode(regexp)
-		eval('var regexp_result = native("regexp", "first", JSON.stringify({text: content,regexp:"'+ regexp +'"}))')
-		if(regexp_result.length == 0){regexp_result = []}else{regexp_result = JSON.parse(regexp_result)}
-		var result = regexp_result.pop()
-		if(typeof(VAR_TV_0) == 'undefined' || !VAR_TV_0){VAR_TV_0 = ""}
-		var result = regexp_result[0]
-		if(typeof(result) == 'undefined' || !result){var result = ""}
-		if(regexp_result.length == 0){var result = VAR_TV_0}; return result
-	}
-	catch(e){fail(e)}
+	var regexp = aec.unicode(regexp)
+	eval('var regexp_result = native("regexp", "first", JSON.stringify({text: content,regexp:"'+ regexp +'"}))')
+	if(regexp_result.length == 0){regexp_result = []}else{regexp_result = JSON.parse(regexp_result)}
+	var result = regexp_result.pop()
+	if(typeof(VAR_TV_0) == 'undefined' || !VAR_TV_0){VAR_TV_0 = ""}
+	var result = regexp_result[0]
+	if(typeof(result) == 'undefined' || !result){var result = ""}
+	if(regexp_result.length == 0){var result = VAR_TV_0}
+	return result
 }
 are.all = function(regexp,content){
-	try{
-		var regexp = aec.unicode(regexp)
-		eval('var regexp_result = native("regexp", "scan", JSON.stringify({text: content,regexp:"'+ regexp +'"}))')
-		if(regexp_result.length == 0){var result = []}else{var result = JSON.parse(regexp_result)}; return result
-	}
-	catch(e){fail(e)}
+	var regexp = aec.unicode(regexp)
+	eval('var regexp_result = native("regexp", "scan", JSON.stringify({text: content,regexp:"'+ regexp +'"}))')
+	if(regexp_result.length == 0){var result = []}else{var result = JSON.parse(regexp_result)}
+	return result
 }
 are.split = function(regexp,content){
-	try{
-		var regexp = aec.unicode(regexp)
-		eval('var regexp_result = native("regexp", "split", JSON.stringify({text: content,regexp:"'+ regexp +'"}))')
-		if(regexp_result.length == 0){var result = []}else{var result = JSON.parse(regexp_result)}; return result
-	}
-	catch(e){fail(e)}
+	var regexp = aec.unicode(regexp)
+	eval('var regexp_result = native("regexp", "split", JSON.stringify({text: content,regexp:"'+ regexp +'"}))')
+	if(regexp_result.length == 0){var result = []}else{var result = JSON.parse(regexp_result)}
+	return result
 }
 are.change = function(regexp,content,removable,replacement){
-	try{
-		var regexp = aec.unicode(regexp)
-		eval('var result = native("'+ regexp +'", "replace", JSON.stringify({text: content,regexp:"'+ removable +'",replace:"'+ replacement +'"}))'); return result
-	}
-	catch(e){fail(e)}
+	var regexp = aec.unicode(regexp)
+	eval('var result = native("'+ regexp +'", "replace", JSON.stringify({text: content,regexp:"'+ removable +'",replace:"'+ replacement +'"}))'); return result
 }
 // *****************************БЛОК*РАБОТЫ*С*ФАЙЛОВОЙ*СИСТЕМОЙ********************************
 var afs = {}
@@ -321,40 +282,20 @@ afs.filecheck = function(string){
     if (exists) {if (isdir == false){var check = true}}; return check
 }
 afs.write = function(string, path){
-	var check = afs.filecheck(path); if (check == fasle){
-		alg.name2("afs.write***func", "Неверно указан путь***error", path + "***ok")
-		alg.fail("Укажите правильный путь к файлу для записи!")
-	}; if (string == ""){string == " "}
     native("filesystem", "writefile", JSON.stringify({path:path,value: (string).toString() + "\r\n",base64:false,append:true}))
 }
 afs.listsave = function(string, path){
-	var check = afs.filecheck(path); if (check == fasle){
-		alg.name2("afs.listsave***func", "Неверно указан путь***error", path + "***ok")
-		alg.fail("Укажите правильный путь к файлу для записи!")
-	}; if (string == ""){string == " "}
 	native("filesystem", "writefile", JSON.stringify({path: path, value: (string).join("\r\n") + ((false) ? "\r\n" : "" ),base64:false,append:false}))
 }
 afs.size = function(string){
-	var check = afs.filecheck(string); if (check == fasle){
-		alg.name2("afs.size***func", "Неверно указан путь***error", string + "***ok")
-		alg.fail("Укажите правильный путь к файлу!")
-	}
     eval('var json = JSON.parse(native("filesystem", "fileinfo", "' + string + '" ))')
 	return json["size"]
 }
 afs.directory = function(string){
-	var check = afs.filecheck(string); if (check == fasle){
-		alg.name2("afs.directory***func", "Неверно указан путь***error", string + "***ok")
-		alg.fail("Укажите правильный путь к файлу!")
-	}
     eval('var json = JSON.parse(native("filesystem", "fileinfo", "' + string + '" ))')
 	return json["directory"]
 }
 afs.mod = function(string){
-	var check = afs.filecheck(string); if (check == fasle){
-		alg.name2("afs.mod***func", "Неверно указан путь***error", string + "***ok")
-		alg.fail("Укажите правильный путь к файлу!")
-	}
     eval('var json = JSON.parse(native("filesystem", "fileinfo", "' + string + '" ))')
 	var mod = new Date(json["last_modified"] * 1000); return mod
 }
@@ -373,7 +314,7 @@ afs.copy = function(path, new_path){
 // *****************************БЛОК*СЕРВИСНЫХ*ФУНКЦИЙ********************************
 var asf = {}
 asf.thread = function(){
-    return thread_number().toString()
+    var thread_index = thread_number(); return String(thread_index)
 }
 asf.thread100 = function(){
 	var thread_index = thread_number()
@@ -389,39 +330,22 @@ asf.thread1000 = function(){
 	return String(thread_index)
 }
 asf.res = function(string){
-	try{
-		return RPick(string)
-	}
-	catch(e){fail(e)}
-}
-asf.location = function(string){
-	try{
-		return RInfo(string,"Location")
-	}
-	catch(e){fail(e)}
+	var resource = RPick(string)
+	return resource[0]
 }
 asf.is_num = function(string){
-	try{
-		var result = isNaN(string)
-		if (result){var answer = false}else{var answer = true}
-		return answer
-	}
-	catch(e){fail(e)}
+	var result = isNaN(string)
+	if (result){var answer = false}else{var answer = true}
+	return answer
 }
 asf.var_isset = function(string){
-	try{
-		eval('if (typeof '+string+' !=="undefined"){var result = true}else{var result = false}')
-		return result
-	}
-	catch(e){fail(e)}
+	eval('if (typeof '+string+' !=="undefined"){var result = true}else{var result = false}')
+	return result
 }
 asf.global = function(string){
-	try{
-		var string = atx.upper(string)
-		var eval_string = 'var result = JSON.parse(P("basglobal", "'+string+'") || '+"'"+'""'+"'"+')'
-		eval(eval_string); return result
-	}
-	catch(e){fail(e)}
+	var string = atx.upper(string)
+	var eval_string = 'var result = JSON.parse(P("basglobal", "'+string+'") || '+"'"+'""'+"'"+')'
+	eval(eval_string); return result
 }
 asf.sound = function(){
 	native("usernotification", "playsound", "")
@@ -429,48 +353,44 @@ asf.sound = function(){
 // ********************************БЛОК*ОБРАБОТКИ*ТЕКСТА***********************************
 var atx = {}
 atx.upper = function(string){
-	try{
-		return string.toUpperCase()
-	}
-	catch(e){fail(e)}
+	return string.toUpperCase()
 }
 atx.htmlclean = function(string){
-	try{
-		var text = string.replace(/&nbsp;/g, ' ')
-		var text = text.replace(/[\t]/g, ' ')
-		var text = text.replace(/[ ]{2,}/g, ' ')
-		var text = text.replace(/[\s]+([\r\n])/g, '\r\n')
-		var text = text.replace(/([\r\n])[\s]+/g, '\r\n')
-		var text = text.replace(/[\r\n]{2,}/g, '\r\n')
-		return text.replace(/<.*?>/g, "")
-	}
-	catch(e){fail(e)}
+	var text = string.replace(/&nbsp;/g, ' ')
+	var text = text.replace(/[\t]/g, ' ')
+	var text = text.replace(/[ ]{2,}/g, ' ')
+	var text = text.replace(/[\s]+([\r\n])/g, '\r\n')
+	var text = text.replace(/([\r\n])[\s]+/g, '\r\n')
+	var text = text.replace(/[\r\n]{2,}/g, '\r\n')
+	string = text.replace(/<.*?>/g, "")
+	return string
 }
 atx.htmltotext = function(string){
-	try{
-		var text=string.replace(/<br>/gi, "\n")
-		var text=text.replace(/<p.*>/gi, "\n")
-		var text=text.replace(/<a.*href="(.*?)".*>(.*?)<\/a>/gi, " $2 (Link->$1) ")
-		}
-		catch(e){fail(e)}
-		return text.replace(/<(?:.|\s)*?>/g, "")
+	var text=string.replace(/<br>/gi, "\n")
+	var text=text.replace(/<p.*>/gi, "\n")
+	var text=text.replace(/<a.*href="(.*?)".*>(.*?)<\/a>/gi, " $2 (Link->$1) ")
+	string=text.replace(/<(?:.|\s)*?>/g, "")
+	return string
 }
 atx.breaks = function(string){
-	try{
-		return string.replace(/[\n\r]/g, ' ').replace(/\s{2,}/g, ' ')
-	}
-	catch(e){fail(e)}
+	return string.replace(/[\n\r]/g, ' ').replace(/\s{2,}/g, ' ')
 }
 atx.spaces = function(string){
-	try{
-		return string.replace(/\s*/g,'')
-	}
-	catch(e){fail(e)}
+	return string.replace(/\s*/g,'')
 }
 // ********************************БЛОК*ГЕНЕРИРУЮЩИХ*ФУНКЦИЙ***********************************
 var agf = {}
+agf.tmp_asynch = function(string){
+    _if(true, function(){
+    _template('"' + string + '"')!
+    VAR_TMP = _spintax(_result()).replace("BASASYNC","\)\!")})!
+}
 agf.tmp = function(string){
-    return _spintax(string)
+    agf.tmp_asynch(string)
+    var result = VAR_TMP
+    var result = result.slice(1)
+    var result = result.substring(0, result.length - 1)
+    return result
 }
 agf.rmalename = function() {
     return agf.tmp("<RMaleName>")
@@ -508,28 +428,32 @@ agf.randstringen = function(num){
 	}; return content
 }
 agf.randstringru = function(num){
-	if (asf.var_isset(num) == false){ num = 13 }; var data = Number(num)
+	if (asf.var_isset(num) == false){ num = 13 }
+	var data = Number(num)
 	if (asf.is_num(data)){
 		var alphabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя "
 		var content = Array(data).join().split(',').map(function() { return (alphabet).charAt(Math.floor(Math.random() * alphabet.length)); }).join('')
 	}; return content
 }
 agf.cryptopass = function(num){
-	if (asf.var_isset(num) == false){ num = 16 }; var data = Number(num)
+	if (asf.var_isset(num) == false){ num = 16 }
+	var data = Number(num)
 	if (asf.is_num(data)){
 		var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789`~!@#$%^&*()_-+=<>?'}{]["
 		var content = Array(data).join().split(',').map(function() { return (alphabet).charAt(Math.floor(Math.random() * alphabet.length)); }).join('')
 	}; return content
 }
 agf.pass = function(num){
-	if (asf.var_isset(num) == false){ num = 8 }; var data = Number(num)
+	if (asf.var_isset(num) == false){ num = 8 }
+	var data = Number(num)
 	if (asf.is_num(data)){
 		var alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 		var content = Array(data).join().split(',').map(function() { return (alphabet).charAt(Math.floor(Math.random() * alphabet.length)); }).join('')
 	}; return content
 }
 agf.numpass = function(num){
-	if (asf.var_isset(num) == false){ num = 8 }; var data = Number(num)
+	if (asf.var_isset(num) == false){ num = 8 }
+	var data = Number(num)
 	if (asf.is_num(data)){
 		var alphabet = "0123456789"
 		var content = Array(data).join().split(',').map(function() { return (alphabet).charAt(Math.floor(Math.random() * alphabet.length)); }).join('')
@@ -545,30 +469,27 @@ agf.day = function(){
 	return agf.tmp('{01|02|03|04|05|06|07|08|09|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28}')
 }
 agf.birthday = function(min, max){
-	try{
-		var min = Number(min); var max = Number(max)
-		if (asf.is_num(min) == false){
-			var name = 'agf.birthday***func'; var str = 'Заданное значение возраста***red'; var str2 = min + '***ok'; var str3 = 'указано неверно.***red'; alg.name3(name, str, str2, str3)
-			alg.fail('Укажите минимальный возраст правильно!')
-		}
-		if (asf.is_num(max) == false){
-			var name = 'agf.birthday***func'; var str = 'Заданное значение возраста***red'; var str2 = max + '***ok'; var str3 = 'указано неверно.***red'; alg.name3(name, str, str2, str3)
-			alg.fail('Укажите максимальный возраст правильно!')
-		}
-		if (min > max) {var mx = max; var mn = min; var min = mx; var max = mn}
-		var minyear = atm.year() - max
-		var maxyear = atm.year() - min
-		var cycle = maxyear - minyear
-		var str = ''; var count = minyear
-		for (i=0;i<cycle;i++){var str = str+count; var str = str+'|'; count++}
-		var str = str.substring(0, str.length - 1)
-		var str = '{' + str + '}'
-		var year = agf.tmp(str)
-		var month = agf.month()
-		var day = agf.day()
-		return day + '.' + month  + '.' + year
+	var min = Number(min); var max = Number(max)
+	if (asf.is_num(min) == false){
+		var name = 'agf.birthday***func'; var str = 'Заданное значение возраста***red'; var str2 = min + '***ok'; var str3 = 'указано неверно.***red'; alg.name3(name, str, str2, str3)
+		alg.fail('Укажите минимальный возраст правильно!')
 	}
-	catch(e){fail(e)}
+	if (asf.is_num(max) == false){
+		var name = 'agf.birthday***func'; var str = 'Заданное значение возраста***red'; var str2 = max + '***ok'; var str3 = 'указано неверно.***red'; alg.name3(name, str, str2, str3)
+		alg.fail('Укажите максимальный возраст правильно!')
+	}
+	if (min > max) {var mx = max; var mn = min; var min = mx; var max = mn}
+	var minyear = atm.year() - max
+	var maxyear = atm.year() - min
+	var cycle = maxyear - minyear
+	var str = ''; var count = minyear
+	for (i=0;i<cycle;i++){var str = str+count; var str = str+'|'; count++}
+    var str = str.substring(0, str.length - 1)
+    var str = '{' + str + '}'
+    var year = agf.tmp(str)
+    var month = agf.month()
+    var day = agf.day()
+    return day + '.' + month  + '.' + year
 }
 // *************************************HTTP*КЛИЕНТ****************************************
 var ahc = {}
@@ -620,11 +541,13 @@ ahc.proxy = function(string){
 }
 ahc.content = function(){
 	_switch_http_client_main()
-	return http_client_encoded_content("auto")
+	var result = http_client_encoded_content("auto")
+	return result
 }
 ahc.status = function(){
 	_switch_http_client_main()
-	return http_client_status()
+	var result = http_client_status()
+	return result
 }
 ahc.reset = function(){
 	_switch_http_client_main()
@@ -632,7 +555,8 @@ ahc.reset = function(){
 }
 ahc.url = function(){
 	_switch_http_client_main()
-	return http_client_url()
+	var result = http_client_url()
+	return result
 }
 ahc.header = function(header, string){
 	_switch_http_client_main()
@@ -648,7 +572,8 @@ ahc.cleanheaders = function(){
 }
 ahc.savecookies = function(){
 	_switch_http_client_main()
-	return http_client_save_cookies()
+	var result = http_client_save_cookies()
+	return result
 }
 ahc.changecookies = function(string){
 	_switch_http_client_main()
@@ -666,210 +591,63 @@ aec.cryptojs_check = function(){
 }
 aec.aes = function(string, key){
 	aec.cryptojs_check()
-	try{
-		return CryptoJS.AES.encrypt(string, key).toString()
-	}
-	catch(e){fail(e)}
+	return CryptoJS.AES.encrypt(string, key).toString()
 }
 aec.utf8 = function(string){
 	aec.cryptojs_check()
-    try{
-		return CryptoJS.enc.Utf8.parse(string).toString()
-	}
-	catch(e){fail(e)}
+    return result = CryptoJS.enc.Utf8.parse(string).toString()
 }
 aec.md5 = function(string){
 	aec.cryptojs_check()
-    try{
-		return CryptoJS.MD5(string).toString()
-	}
-	catch(e){fail(e)}
+    return CryptoJS.MD5(string).toString()
 }
 aec.unicode = function(string){
-	try{
-		return string.split("").map(function(s){
-			return "\\u"+("0000" + s.charCodeAt(0).toString(16)).slice(-4);
-		}).join("")
-	}
-	catch(e){fail(e)}
+	return string.split("").map(function(s){
+		return "\\u"+("0000" + s.charCodeAt(0).toString(16)).slice(-4);
+	}).join("");
 }
 aec.sha1 = function(string){
 	aec.cryptojs_check()
-	try{
-		return CryptoJS.SHA1(string).toString()
-	}
-	catch(e){fail(e)}
+	return CryptoJS.SHA1(string).toString()
 }
 aec.sha256 = function(string, key){
 	aec.cryptojs_check()
-    try{
-		var hash = CryptoJS.HmacSHA256(string, key)
-		return hash.toString(CryptoJS.enc.Hex)
-	}
-	catch(e){fail(e)}
+    var hash = CryptoJS.HmacSHA256(string, key)
+	return hash.toString(CryptoJS.enc.Hex)
 }
 aec.base64 = function(string, key){
-    try{
-		return base64_encode(string)
-	}
-	catch(e){fail(e)}
+    return base64_encode(string)
 }
 aec.des = function(string, key){
 	aec.cryptojs_check()
-	try{
-		return CryptoJS.DES.encrypt(string, key).toString()
-	}
-	catch(e){fail(e)}
+	return CryptoJS.DES.encrypt(string, key).toString()
 }
 aec.tripledes = function(string, key){
 	aec.cryptojs_check()
-	try{
-		return CryptoJS.TripleDES.encrypt(string, key).toString()
-	}
-	catch(e){fail(e)}
+	return CryptoJS.TripleDES.encrypt(string, key).toString()
 }
 // ********************************БЛОК*ДЕШИФРОВКИ*ДАННЫХ***********************************
 var adc = {}
 adc.aes = function(string, key){
 	aec.cryptojs_check()
-	try{
-		return CryptoJS.AES.decrypt(string, key).toString(CryptoJS.enc.Utf8)
-	}
-	catch(e){fail(e)}
+	return CryptoJS.AES.decrypt(string, key).toString(CryptoJS.enc.Utf8)
 }
 adc.base64 = function(string){
-    try{
-		return base64_decode(string)
-	}
-	catch(e){fail(e)}
+    return base64_decode(string)
 }
 adc.md5 = function(string){
 	aec.cryptojs_check()
-    try{
-		return CryptoJS.decode.MD5(string).toString()
-	}
-	catch(e){fail(e)}
+    return CryptoJS.decode.MD5(string).toString()
 }
 adc.utf8 = function(string){
 	aec.cryptojs_check()
-    try{
-		return CryptoJS.Utf8.decrypt(string).toString()
-	}
-	catch(e){fail(e)}
+    return result = CryptoJS.Utf8.decrypt(string).toString()
 }
 adc.des = function(string, key){
 	aec.cryptojs_check()
-	try{
-		return CryptoJS.DES.decrypt(string, key).toString(CryptoJS.enc.Utf8)
-	}
-	catch(e){fail(e)}
+	return CryptoJS.DES.decrypt(string, key).toString(CryptoJS.enc.Utf8)
 }
 adc.tripledes = function(string, key){
 	aec.cryptojs_check()
-	try{
-		return CryptoJS.TripleDES.decrypt(string, key).toString(CryptoJS.enc.Utf8)
-	}
-	catch(e){fail(e)}
+	return CryptoJS.TripleDES.decrypt(string, key).toString(CryptoJS.enc.Utf8)
 }
-// **********************************БЛОК*РАБОТЫ*С*JSON*************************************
-var ajn = {}
-ajn.check = function(string){
-	try{JSON.parse(string);var result = true}
-	catch(e){var result = false};return result
-}
-ajn.count = function(string, path){
-	try{var json = JSON.parse(string)
-		if(path == "") {var result = Object.keys(json).length}
-		else {var result = jsonPath(json, path).length}}
-	catch(e){fail(e)};return result
-}
-ajn.key = function(string, path){
-	try{var json = JSON.parse(string)
-		if(path == "") {var result = Object.keys(json)}
-		else {var result = jsonKeys(json, path)}
-	}
-	catch(e){fail(e)}
-	return result
-}
-ajn.keys = function(string, path, separ){
-	try{var new_list = Array()
-	var paths = path.split(separ)
-	var list = string.split(separ)
-	for(var i = 0; i < list.length; i++) {
-		var json = JSON.parse(list[i])
-		if(paths[i] == ""){
-			new_list[i] = Object.keys(json)
-		}else{
-  			new_list[i] = jsonKeys(json, paths[i])
-  		}
-	}
-}
-catch(e)
-{fail(e)}
-	return new_list
-}
-ajn.multyparse = function(string, path, separ){
-try{var new_list = Array()
-	var paths = path.split(separ)
-	var list = string.split(separ)
-	for(var i = 0; i < list.length; i++){
-		var json = JSON.parse(list[i])
-		if(paths[i] == ""){
-			new_list[i] = json
-	}else{
-		new_list[i] = jsonPath(json, paths[i])}
-	}
-}
-catch(e)
-{fail(e)}
-	return new_list
-}
-ajn.parse = function(string, path){
-try{var json = JSON.parse(string)
-	if(path == "") {
-		var result = json
-	}else {var result = jsonPath(json, path)}
-}
-catch(e)
-{fail(e)}
-	return result
-}
-// ********************************БЛОК*РАБОТЫ*С*ФОРМАТОМ*CSV***********************************
-var asv = {}
-asv.check = function(resource, string){
-	var type = typeof string
-	if (type == "object"){
-		for (i=0; i<string.length; i++){
-			var eltype = typeof string[i]
-			if (eltype == "string"){var element = string[i].replace("'", '"')}
-		}
-		var string = string.join(',')
-	}
-    var first = asf.res(resource); var first = first[0]
-    var header = String(string); var path = asf.location(resource)
-    var name = 'asv.check***func'
-    if (header == first) {
-        alg.name3(name, 'Файл***success', path + '***ok', 'соответствует текущему типу записи***success')
-        var result = true
-    } else {
-        alg.name3(name, 'В файл***error', path + '***ok', 'записаны данные другого формата***error')
-        var result = false
-    }
-    return result
-}
-asv.add = function(resource, string){
-	var type = typeof string
-	if (type == "object"){
-		for (i=0; i<string.length; i++){
-			var element = string[i]
-			var eltype = typeof element
-			if (eltype == "string"){
-				var element = string[i].replace("'", '"')
-				var element = "'" + element + "'"
-			}
-		}
-		var string = string.join(',')
-	}
-	
-}
-asv.list = function(resource, array){}

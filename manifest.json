@@ -15,13 +15,13 @@
 	"actions":
 	[
 		{
-			"name":"AuroraAdd",
-			"description":{"en": "Aurora Library 1.1.0","ru": "Библиотека Аврора 1.1.0"},
+			"name":"BAS_API",
+			"description":{"en": "API BAS","ru": "API BAS"},
 			"template": "{{Variable}}",
 			"is_element": false,
-			"interface": "aurora_add_interface.js",
-			"select": "aurora_add_select.js",
-			"code": [{"file":"aurora_add_code.js", "name": "aurora_add_code"}]
+			"interface": "aurora_bas_api_interface.js",
+			"select": "",
+			"code": [{"file":"", "name": ""}]
 		},
 		{
 			"name":"Aurora",
@@ -130,34 +130,10 @@
 			"interface": "aurora_decode_interface.js",
 			"select": "",
 			"code": [{"file":"", "name": ""}]
-		},
-		{
-			"name":"AuroraJson",
-			"description":{"en": "AJN: json parsing","ru": "AJN: анализ данных json"},
-			"template": "{{Variable}}",
-			"is_element": false,
-			"interface": "aurora_json_interface.js",
-			"select": "",
-			"code": [{"file":"", "name": ""}]
-		},
-		{
-			"name":"BAS_API",
-			"description":{"en": "API BAS","ru": "API BAS"},
-			"template": "{{Variable}}",
-			"is_element": false,
-			"interface": "aurora_bas_api_interface.js",
-			"select": "",
-			"code": [{"file":"", "name": ""}]
 		}
 	],
 	"localize": 
 	{
-		"Add aurora library to your script." : {"ru": "Добавить библиотеку Аврора в ваш проект."},
-		"Start with this action. Action add library to your project." : {"ru": "Начните проект с этого действия. Оно добавит библиотеку в ваш проект."},
-		"It is necessary for library worked after compile project." : {"ru": "Это необходимо, чтобы библиотека работала в скомпиллированном проекте."},
-		"If your use Aurora functions in the 'OnApplicationStart' function, add this library into OnApplicationStart and into Main functions." : {"ru": "Если Вы используете функции Авроры в 'OnApplicationStart', добавьте библиотеку и туда тоже."},
-		"Also recommended start your script with aurora.check function for library version check ('1.1.0' - your library version):" : {"ru": "Так же рекомендуется начинать ваш скрипт с функции проверки версии библиотеки aurora.check ('1.1.0' - ваша версия библиотеки):"},
-		
 		"Aurora object functions" : {"ru": "Функции объекта Aurora"},
 		"[1.0.0] Help for Aurora [nodata]" : {"ru": "[1.0.0] Справка по библиотеке Аврора [nodata]"},
 		"[1.0.0] Aurora library version checker [nodata]" : {"ru": "[1.0.0] Проверка версии библиотеки Aurora [nodata]"},
@@ -258,8 +234,6 @@
 		"[1.0.0] Thread index for 100 threads" : {"ru": "[1.0.0] Номер потока для 100 потоков"},
 		"[1.0.0] Thread index for 1000 threads" : {"ru": "[1.0.0] Номер потока для 1000 потоков"},
 		"[1.0.1] Resource reed" : {"ru": "[1.0.1] Чтение ресурса"},
-		"[1.1.0] Resource to list" : {"ru": "[1.1.0] Ресурс в список"},
-		"[1.0.1] Resource location" : {"ru": "[1.0.1] Расположение ресурса"},
 		"[1.0.0] Check for number" : {"ru": "[1.0.0] Проверка на число"},
 		"[1.0.0] Check for a variable existence" : {"ru": "[1.0.0] Проверка существования переменной"},
 		"[1.0.0] Global variable reading" : {"ru": "[1.0.0] Чтение глобальной переменной"},
@@ -340,21 +314,10 @@
 		"[1.0.0] UTF8 decrypting" : {"ru": "[1.0.0] Расшифровка UTF8"},
 		"[1.0.0] DES decrypting" : {"ru": "[1.0.0] Расшифровка DES"},
 		"[1.0.0] Triple DES decrypting" : {"ru": "[1.0.0] Расшифровка Triple DES"},
-		"Most decrypting functions require a CryptoJS library. You can download this library here:" : {"ru": "Большинство функций расшифровки требуют для работы установленную библиотеку CryptoJS. Вы можете скачать её по ссылке:"},
-		
-		"ajn{} object functions (aurora json)" : {"ru": "Функции объекта ajn{} (aurora json)"},
-		"[1.1.0] Check for json" : {"ru": "[1.1.0] Проверить строку на формат json"},
-		"[1.1.0] Number of elements" : {"ru": "[1.1.0] Количество элементов"},
-		"[1.1.0] Get key" : {"ru": "[1.1.0] Получить ключ"},
-		"[1.1.0] Get keys" : {"ru": "[1.1.0] Получить ключи"},
-		"[1.1.0] Get the value" : {"ru": "[1.1.0] Получить значение"},
-		"[1.1.0] Get multiple values" : {"ru": "[1.1.0] Получить несколько значений"},
-		"Use a separator character to process multiple JSON strings." : {"ru": "Для обработки нескольких строк JSON используйте символ-разделитель."},
-		"Specify your separator for ajn.keys and ajn.multiparse functions." : {"ru": "Укажите ваш разделитель для функций ajn.keys и ajn.multiparse."},
-		"For example, you can use *** characters like separator:" : {"ru": "Например, вы можете использовать символы *** как разделитель:"},
-		"For get number of all json elements use ajn.count(json_string, jpath) with empty jpath value:" : {"ru": "Для получения числа всех элементов json, используйте ajn.count(json_string, jpath) с пустым значением jpath:"}
+		"Most decrypting functions require a CryptoJS library. You can download this library here:" : {"ru": "Большинство функций расшифровки требуют для работы установленную библиотеку CryptoJS. Вы можете скачать её по ссылке:"}
 	},
-	"engine": [],
+	"engine": ["engine.js"],
 	"browser": [],
 	"depends": []
 }
+
