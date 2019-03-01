@@ -793,9 +793,9 @@ ajn.key = function(string, path){
 }
 ajn.keys = function(string, path, separ){
 	try{var new_list = Array()
-	var paths = path.split(separ)
-	var list = string.split(separ)
-	for(var i = 0; i < list.length; i++) {
+	if(path.indexOf(separ) > 0){var paths = path.split(separ)}
+	if(string.indexOf(separ) > 0){var list = string.split(separ)
+	for(var i = 0; i < list.length; i++){
 		var json = JSON.parse(list[i])
 		if(paths[i] == ""){
 			new_list[i] = Object.keys(json)
@@ -862,14 +862,23 @@ asv.add = function(resource, string){
 	if (type == "object"){
 		for (i=0; i<string.length; i++){
 			var element = string[i]
+            var check = true
 			var eltype = typeof element
 			if (eltype == "string"){
-				var element = string[i].replace("'", '"')
-				var element = "'" + element + "'"
+				if(element.indexOf(",") > 0){
+                    var element = element.replace("'",'"')
+                    var first_symbol = element.substring(0,1)
+                    var last_symbol = element.slice(-1)
+                    if (first_symbol == '"') {var element = element.slice(1)}
+                    if (last_symbol == '"') {var element = element.substring(0, element.length - 1)}
+                    var element = "'" + element + "'"
+                }
 			}
+            string[i] = element
 		}
 		var string = string.join(',')
 	}
-	
+	RInsert(resource,string,false)
+	if(true)
+	RSync(resource)
 }
-asv.list = function(resource, array){}
