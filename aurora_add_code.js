@@ -7,7 +7,7 @@ aurora.help = function(){
     var str2 = version + '***ok'
     alg.name2(name, 'Используется библиотека Аврора версии***success', str2)
     alg.name2(name, 'Для просмотра всех объектов и функций библиотеки используйте***success', 'справочник библиотеки Аврора***ok')
-    alg.name2(name, 'Актуальную версию библиотеки Аврора можно скачать здесь:***success', 'https://cloud.mail.ru/public/Dtmr/S4TjGgopm***ok')
+    alg.name2(name, 'Актуальную версию библиотеки Аврора можно скачать здесь:***success', 'https://github.com/Pragmatikc/Aurora/tree/current***ok')
 }
 aurora.check = function(string){
     var arr = string.split('.')
@@ -22,7 +22,7 @@ aurora.check = function(string){
 		var str3 = String(version) + '***ok';
 		var name = 'aurora.check***func';
 		alg.name3(name, 'Версия библиотеки ***success', 'aurora_library ***green', str3)
-		alg.name2(name, 'Актуальная версия библиотеки Аврора: ***success', 'https://cloud.mail.ru/public/Dtmr/S4TjGgopm***ok')
+		alg.name2(name, 'Актуальная версия библиотеки Аврора: ***success', 'https://github.com/Pragmatikc/Aurora/tree/current***ok')
     } else {
         var name = 'aurora.check***func';
         var str2 = string + '***ok';
@@ -30,7 +30,7 @@ aurora.check = function(string){
 		var str2 = version + '***ok';
 		alg.name2(name, 'На даный момент установлена версия***error', str2)
 		alg.name(name, 'Если проект создан с более новой версией библиотеки, некоторые функции могут не работать без обновления!***error')
-		alg.name2(name, 'Скачайте и установите актуальную версию: ***success', 'https://cloud.mail.ru/public/Dtmr/S4TjGgopm***ok')
+		alg.name2(name, 'Скачайте и установите актуальную версию: ***success', 'https://github.com/Pragmatikc/Aurora/tree/current***ok')
     }
 }
 aurora.versions_compare = function(v1, comparator, v2) {
