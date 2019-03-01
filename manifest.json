@@ -141,6 +141,15 @@
 			"code": [{"file":"", "name": ""}]
 		},
 		{
+			"name":"AuroraCSV",
+			"description":{"en": "ASV: write to csv","ru": "ASV: запись в csv"},
+			"template": "{{Variable}}",
+			"is_element": false,
+			"interface": "aurora_csv_interface.js",
+			"select": "",
+			"code": [{"file":"", "name": ""}]
+		},
+		{
 			"name":"BAS_API",
 			"description":{"en": "API BAS","ru": "API BAS"},
 			"template": "{{Variable}}",
@@ -352,7 +361,15 @@
 		"Use a separator character to process multiple JSON strings." : {"ru": "Для обработки нескольких строк JSON используйте символ-разделитель."},
 		"Specify your separator for ajn.keys and ajn.multiparse functions." : {"ru": "Укажите ваш разделитель для функций ajn.keys и ajn.multiparse."},
 		"For example, you can use *** characters like separator:" : {"ru": "Например, вы можете использовать символы *** как разделитель:"},
-		"For get number of all json elements use ajn.count(json_string, jpath) with empty jpath value:" : {"ru": "Для получения числа всех элементов json, используйте ajn.count(json_string, jpath) с пустым значением jpath:"}
+		"For get number of all json elements use ajn.count(json_string, jpath) with empty jpath value:" : {"ru": "Для получения числа всех элементов json, используйте ajn.count(json_string, jpath) с пустым значением jpath:"},
+		
+		"asv{} object functions (aurora csv)" : {"ru": "Функции объекта asv{} (aurora csv)"},
+		"[1.1.0] Check for matching record type" : {"ru": "[1.1.0] Проверка на соответствие типу записи"},
+		"[1.1.0] Adding a new line to a csv file" : {"ru": "[1.1.0] Запись новой строки в csv-файл"},
+		"Specify name of the resource that contains the csv file and an array or string of data." : {"ru": "Укажите имя ресурса, содержащего csv-файл, и массив или строку с данными."},
+		"Working with arrays is preferable and easier. The data in the arrays are processed automatically." : {"ru": "Работать с массивами предпочтительнее и проще. Данные в массивах обрабатываются автоматически."},
+		"equivalently" : {"ru": "равнозначно"},
+		"All csv functions accept string values and arrays:" : {"ru": "Все функции, работающие с форматом csv, принимают как строковые значения, так и массивы:"}
 	},
 	"engine": [],
 	"browser": [],
