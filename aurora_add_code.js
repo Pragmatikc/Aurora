@@ -804,8 +804,7 @@ ajn.keys = function(string, path, separ){
   		}
 	}
 }
-catch(e)
-{fail(e)}
+	   }catch(e){fail(e)}
 	return new_list
 }
 ajn.multyparse = function(string, path, separ){
